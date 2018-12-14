@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +26,7 @@ namespace Task9
             }
 
             List<int> Marbles = new List<int>();
+            
             //Dictionary<int, int> Pairs = new Dictionary<int, int>();
 
             Marbles.Add(0);
