@@ -11,7 +11,7 @@ namespace Task12
     {
         static void Main(string[] args)
         {
-            
+
             System.IO.StreamReader file = new System.IO.StreamReader("../../input.txt");
 
             int ZeroPosition = 0;
@@ -36,14 +36,15 @@ namespace Task12
             int lineNumber = 0;
             while ((line = file.ReadLine()) != null)
             {
-                string []split = line.Split(' ');
+                string[] split = line.Split(' ');
 
-                if(split[2]=="#")
+                if (split[2] == "#")
                     TrueRules.Add(split[0]);
             }
             file.Close();
             int i = 0;
-            for ( i = 0; i < 50_000_000_000; i++)
+            int oldValue = 0;
+            for (i = 0; i < 1000; i++)
             {
                 while (!state.StartsWith("...."))
                 {
@@ -58,7 +59,7 @@ namespace Task12
 
                 stateBuilder = new StringBuilder(state);
 
-                for (int j = 2; j < stateBuilder.Length-2; j++)
+                for (int j = 2; j < stateBuilder.Length - 2; j++)
                 {
                     if (TrueRules.Contains(state.Substring(j - 2, 5)))
                     {
@@ -72,7 +73,7 @@ namespace Task12
 
                 state = stateBuilder.ToString();
 
-                if (i % 1_000 == 0)
+                //if (i % 1_000 == 0)
                 {
                     //Console.WriteLine(i);
                     int value = 0;
@@ -82,30 +83,20 @@ namespace Task12
                             value += index - ZeroPosition;
                     }
 
-                    Console.WriteLine(value);
+                    //Console.WriteLine(value- oldValue);
+                    oldValue = value;
                 }
 
-                if (i % 10_000 == 0 && i != 0)
-                {
-                    break;
-                }
+
+                //if (i % 10_000 == 0 && i != 0)
+                //{
+                //    break;
+                //}
 
                 //Console.WriteLine(state);
             }
 
-            int sum = 0;
-            for (int index = 0; index < state.Length; index++)
-            {
-                if (state[index] == '#')
-                    sum += index - ZeroPosition;
-            }
-
-            Console.WriteLine(i);
-
-            Console.WriteLine(sum);
-
-
-            Console.WriteLine(1415+(long)53_000* 10);
+            Console.WriteLine(oldValue + (50_000_000_000 - 1000) * 53);
 
 
             Console.ReadKey();
